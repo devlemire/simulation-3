@@ -6,6 +6,8 @@ const config = require(`${__dirname}/config.js`);
 const passport = require('passport');
 const strategy = require(`${__dirname}/strategy.js`);
 
+const path = require('path');
+
 const app = express();
 
 app.use( express.static( `${__dirname}/../public/build` ) );
@@ -50,7 +52,7 @@ app.use(`/api/recommended`, require(`${__dirname}/routes/recommended_router.js`)
 
 // Re-send front-end
 app.get('*', ( req, res, next ) => {
-  res.sendFile(`${__dirname}/../public/build/index.html`);
+  res.sendFile( path.resolve( `${__dirname}/../public/build/index.html`) );
 });
 
 const port = 3000;
