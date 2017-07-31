@@ -1,9 +1,13 @@
 module.exports = {
   find: ( req, res, next ) => {
     const db = req.app.get('db');
-    const { user, filter } = req.body;
+    let { user, filter } = req.body;
 
-    db.recommended[filter]([ user.id, user[filter].toLowerCase() ]).then( users => {
+    if ( filter !== 'birthday' ) {
+      user[filter] = user[filter].toLowerCase();
+    }
+
+    db.recommended[filter]([ user.id, user[filter] ]).then( users => {
       res.status(200).send(users);
     }).catch( err => console.log( err ) );
   },
