@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { authenticated } from '../../ducks/reducer';
 import { connect } from "react-redux";
 
+import baseURL from '../../baseURL';
 import api from "../../api";
 
 class Login extends Component {
@@ -17,7 +18,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <a href={ `http://localhost:3000${api.login}` }>Login/Register</a>
+        <a href={ `${baseURL}${api.login}` }>Login/Register</a>
       </div>
     )
   }
